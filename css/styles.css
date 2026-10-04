@@ -1269,3 +1269,7 @@ button.pill__word { background: none; border: 0; padding: 0; cursor: pointer; fo
   .blog-list .post-featured, .blog-list .post-featured--reverse { grid-template-columns: 1fr; }
   .art-cover img { aspect-ratio: auto; }
 }
+
+/* Pregunta visible encima de un desplegable (p. ej. días de challenge) */
+.ch-field__q { display: block; margin-top: 18px; font-size: 0.95rem; font-weight: 600; color: #fff; line-height: 1.3; }
+.ch-field__q + select { padding-top: 8px; }
