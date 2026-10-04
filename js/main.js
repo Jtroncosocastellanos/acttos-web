@@ -41,13 +41,16 @@ window.addEventListener("resize", () => {
 const pill = document.querySelector(".pill");
 if (pill) {
   const toggle = pill.querySelector(".pill__toggle");
+  const word = pill.querySelector(".pill__word");
   const setCollapsed = (collapsed) => {
     pill.classList.toggle("is-collapsed", collapsed);
     toggle.setAttribute("aria-expanded", String(!collapsed));
     toggle.setAttribute("aria-label", collapsed ? "Abrir menú" : "Cerrar menú");
+    if (word) word.setAttribute("aria-expanded", String(!collapsed));
   };
   setCollapsed(window.matchMedia("(max-width: 760px)").matches);
-  toggle.addEventListener("click", () => setCollapsed(!pill.classList.contains("is-collapsed")));
+  // Tanto el "+" como la palabra ACTTOS abren y cierran el menú
+  [toggle, word].forEach((el) => el && el.addEventListener("click", () => setCollapsed(!pill.classList.contains("is-collapsed"))));
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !pill.classList.contains("is-collapsed")) setCollapsed(true);
   });

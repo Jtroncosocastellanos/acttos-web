@@ -30,22 +30,22 @@
 
 <main id="main">
   <section class="wrap" aria-label="Galería">
-    <div class="media slides reveal">
-      <img class="slide is-active" src="assets/img/foto-paraguas.jpg" alt="Un hombre protege de la lluvia con su paraguas a una mujer en silla de ruedas" style="object-position:50% 40%">
-      <img class="slide" src="assets/img/foto-escuchar.jpg" alt="Un joven escucha con atención a un hombre mayor sentado en un escalón" style="object-position:50% 38%" loading="lazy">
-      <img class="slide" src="assets/img/foto-montana.jpg" alt="Silueta de una persona que tiende la mano a otra para ayudarla a subir una montaña al atardecer" style="object-position:50% 45%" loading="lazy">
-      <img class="slide" src="assets/img/foto-flores.jpg" alt="Un hombre mayor regala un ramo de flores a una mujer en la calle" style="object-position:50% 45%" loading="lazy">
-      <img class="slide" src="assets/img/foto-cena.jpg" alt="Un grupo de amigos conversa alrededor de una mesa durante una cena" style="object-position:50% 60%" loading="lazy">
-      <div class="media__shade"></div>
-      <div class="media__caption">
-        <p>Pequeños actos. Grandes cambios.</p>
-        <div class="dots" role="group" aria-label="Elegir imagen">
+    <div class="media-split slides reveal">
+      <div class="media-split__text">
+        <p class="media-split__claim">Pequeños actos.<br>Grandes cambios.</p>
+        <p class="lead muted">Cada imagen es un actto: un gesto sencillo que cambia el día de alguien.</p>
+        <div class="dots dots--dark" role="group" aria-label="Elegir imagen">
           <button type="button" aria-label="Imagen 1" aria-current="true"></button>
           <button type="button" aria-label="Imagen 2"></button>
           <button type="button" aria-label="Imagen 3"></button>
           <button type="button" aria-label="Imagen 4"></button>
-          <button type="button" aria-label="Imagen 5"></button>
         </div>
+      </div>
+      <div class="media media--photo">
+        <img class="slide is-active" src="assets/img/foto-paraguas.jpg" alt="Un hombre protege de la lluvia con su paraguas a una mujer en silla de ruedas" style="object-position:50% 40%">
+        <img class="slide" src="assets/img/foto-escuchar.jpg" alt="Un joven escucha con atención a un hombre mayor sentado en un escalón" style="object-position:50% 40%" loading="lazy">
+        <img class="slide" src="assets/img/foto-montana.jpg" alt="Silueta de una persona que tiende la mano a otra para ayudarla a subir una montaña al atardecer" style="object-position:50% 45%" loading="lazy">
+        <img class="slide" src="assets/img/foto-cena.jpg" alt="Un grupo de amigos conversa alrededor de una mesa durante una cena" style="object-position:50% 62%" loading="lazy">
       </div>
     </div>
   </section>
@@ -102,7 +102,7 @@
         <a class="card reveal" href="blog.html">
           <h3 class="card__title">Blog <em>historias reales de generosidad</em></h3>
           <div class="card__media">
-            <img src="assets/img/foto-ninos-flores.jpg" alt="" loading="lazy" style="object-position:50% 45%">
+            <img src="assets/img/foto-flores.jpg" alt="" loading="lazy" style="object-position:50% 45%">
             <span class="card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
@@ -194,7 +194,7 @@
 <nav class="pill" aria-label="Navegación principal">
   <div class="pill__top">
     <span class="pill__icon"><svg class="duo" viewBox="0 0 100 92" aria-hidden="true"><path class="duo__a" d="M5 76C5 55 17 41 33 41s28 14 28 35l-8 2v14H17V78z"/><circle class="duo__a" cx="33" cy="21" r="14"/><path class="duo__b" d="M39 76c0-21 12-35 28-35s28 14 28 35l-8 2v14H51V78z"/><circle class="duo__b" cx="67" cy="21" r="14"/><path class="duo__arm" d="M70 52C58 45 40 45 22 54"/></svg></span>
-    <a class="pill__word" href="index.html">ACTTOS</a>
+    <button class="pill__word" type="button" aria-controls="pill-links">ACTTOS</button>
     <button class="pill__toggle" type="button" aria-expanded="true" aria-controls="pill-links" aria-label="Cerrar menú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
     </button>
