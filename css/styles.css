@@ -1364,3 +1364,10 @@ header .wordmark { padding-right: calc(var(--menu-btn) + clamp(10px, 1.4vw, 20px
 .ch-jump button[aria-current="true"] .ch-jump__dot { background: var(--coral); transform: scale(1.1); }
 .ch-jump button:hover .ch-jump__dot { background: var(--coral-soft); }
 .ch-jump button[aria-current="true"]:hover .ch-jump__dot { background: var(--coral); }
+
+/* Números 1 · 2 · 3 de la galería en el naranja de la web (a juego con los botones) */
+.ch-slide__num {
+  color: var(--coral);
+  -webkit-text-stroke: 0;
+  text-shadow: -4px 3px 0 var(--coral-dark);
+}
