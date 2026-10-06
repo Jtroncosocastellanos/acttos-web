@@ -1332,3 +1332,13 @@ header .wordmark { padding-right: calc(var(--menu-btn) + clamp(10px, 1.4vw, 20px
 .pill.is-open-top { opacity: 1; pointer-events: auto; transform: translateX(-50%); }
 .pill.is-docked { opacity: 1; pointer-events: auto; }
 .pill { transition: width 0.5s var(--ease), transform 0.6s var(--ease), opacity 0.35s, box-shadow 0.4s; }
+
+/* Enlace dentro del texto de presentación de la Home */
+.lead-link { color: var(--coral); font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.lead-link:hover { color: var(--ink); }
+
+/* Botón de menú más grande y algo más ancho que alto */
+:root { --menu-btn-h: clamp(46px, 2.4vw + 30px, 62px); --menu-btn: calc(var(--menu-btn-h) * 1.4); }
+.menu-btn { width: var(--menu-btn); height: var(--menu-btn-h); border-radius: 14px; border-width: 2.5px; }
+.menu-btn svg { width: auto; height: 74%; }
+.menu-btn path { stroke-width: 2.4; }
