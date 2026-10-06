@@ -48,7 +48,12 @@ if (pill) {
     toggle.setAttribute("aria-label", collapsed ? "Abrir menú" : "Cerrar menú");
     if (word) word.setAttribute("aria-expanded", String(!collapsed));
   };
-  setCollapsed(window.matchMedia("(max-width: 760px)").matches);
+  setCollapsed(true);
+
+  // Arriba del todo al cargar; al hacer scroll baja a su posición flotante abajo
+  const dock = () => pill.classList.toggle("is-docked", window.scrollY > 60);
+  dock();
+  window.addEventListener("scroll", dock, { passive: true });
   // Tanto el "+" como la palabra ACTTOS abren y cierran el menú
   [toggle, word].forEach((el) => el && el.addEventListener("click", () => setCollapsed(!pill.classList.contains("is-collapsed"))));
   document.addEventListener("keydown", (e) => {
