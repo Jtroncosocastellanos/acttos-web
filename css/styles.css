@@ -1342,3 +1342,25 @@ header .wordmark { padding-right: calc(var(--menu-btn) + clamp(10px, 1.4vw, 20px
 .menu-btn { width: var(--menu-btn); height: var(--menu-btn-h); border-radius: 14px; border-width: 2.5px; }
 .menu-btn svg { width: auto; height: 74%; }
 .menu-btn path { stroke-width: 2.4; }
+
+/* Botones 1 · 2 · 3 en naranja con un círculo indicador debajo */
+.ch-jump { gap: clamp(14px, 1.6vw, 22px); }
+.ch-jump button {
+  width: auto; height: auto;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 2px 4px; background: none;
+  color: var(--coral);
+  -webkit-text-stroke: 0;
+  text-shadow: -3px 2px 0 var(--coral-dark);
+}
+.ch-jump button[aria-current="true"] { background: none; }
+.ch-jump__n { display: block; line-height: 1; }
+.ch-jump__dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2.5px solid var(--coral); background: transparent;
+  text-shadow: none;
+  transition: background 0.25s, transform 0.25s var(--ease);
+}
+.ch-jump button[aria-current="true"] .ch-jump__dot { background: var(--coral); transform: scale(1.1); }
+.ch-jump button:hover .ch-jump__dot { background: var(--coral-soft); }
+.ch-jump button[aria-current="true"]:hover .ch-jump__dot { background: var(--coral); }
