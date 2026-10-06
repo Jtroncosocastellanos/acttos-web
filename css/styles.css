@@ -1301,3 +1301,34 @@ body { padding-top: calc(var(--pill-h) + var(--pill-gap) * 2); }
 @supports (height: 100dvh) {
   .pill.is-docked { transform: translate(-50%, calc(100dvh - 100% - var(--pill-gap) * 2)); }
 }
+
+/* ==========================================================================
+   Botón de menú pequeño junto al título (sustituye a la barra arriba)
+   ========================================================================== */
+:root { --menu-btn: clamp(38px, 2.6vw + 22px, 52px); }
+body { padding-top: 0; }
+
+.menu-btn {
+  position: absolute; z-index: 40;
+  top: clamp(28px, 4vw, 72px);
+  right: max(var(--gutter), calc((100vw - var(--maxw)) / 2));
+  width: var(--menu-btn); height: var(--menu-btn);
+  display: grid; place-items: center;
+  border: 2px solid currentColor; border-radius: 12px;
+  background: transparent; color: var(--ink); cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s var(--ease);
+}
+.menu-btn svg { width: 62%; height: 62%; }
+.menu-btn:hover { background: var(--coral); border-color: var(--coral); color: #fff; transform: translateY(-1px); }
+.ch-page .menu-btn { top: clamp(40px, 4.4vw, 72px); color: #fff; }
+.ch-page .menu-btn:hover { background: #fff; border-color: #fff; color: var(--coral); }
+
+/* El título grande deja hueco a la derecha para el botón */
+header .wordmark { padding-right: calc(var(--menu-btn) + clamp(10px, 1.4vw, 20px)); }
+.ch-band__title, .art-head .art-col { padding-right: calc(var(--menu-btn) + 12px); }
+
+/* Arriba del todo la barra está oculta: solo aparece si se pulsa el botón */
+.pill { opacity: 0; pointer-events: none; transform: translate(-50%, calc(-100% - var(--pill-gap) - 8px)); }
+.pill.is-open-top { opacity: 1; pointer-events: auto; transform: translateX(-50%); }
+.pill.is-docked { opacity: 1; pointer-events: auto; }
+.pill { transition: width 0.5s var(--ease), transform 0.6s var(--ease), opacity 0.35s, box-shadow 0.4s; }

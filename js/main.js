@@ -24,7 +24,8 @@ function fitWordmarks() {
     const inner = el.querySelector(".wordmark__inner");
     if (!inner) return;
     inner.style.fontSize = "100px";
-    const available = el.clientWidth;
+    const cs = getComputedStyle(el);
+    const available = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     const natural = inner.getBoundingClientRect().width;
     if (natural > 0) inner.style.fontSize = (100 * available) / natural + "px";
   });
@@ -50,14 +51,46 @@ if (pill) {
   };
   setCollapsed(true);
 
-  // Arriba del todo al cargar; al hacer scroll baja a su posición flotante abajo
-  const dock = () => pill.classList.toggle("is-docked", window.scrollY > 60);
+  // Arriba del todo solo se ve el botón pequeño junto al título; la barra aparece
+  // al pulsarlo. Al hacer scroll, la barra baja a su posición flotante abajo.
+  const menuBtn = document.querySelector(".menu-btn");
+  const isDocked = () => pill.classList.contains("is-docked");
+  const openTop = (open) => {
+    pill.classList.toggle("is-open-top", open);
+    setCollapsed(!open);
+    if (menuBtn) {
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    }
+  };
+  const dock = () => {
+    const docked = window.scrollY > 60;
+    if (docked === isDocked()) return;
+    pill.classList.toggle("is-docked", docked);
+    if (docked) openTop(false);
+    else { pill.classList.remove("is-open-top"); setCollapsed(true); }
+  };
   dock();
   window.addEventListener("scroll", dock, { passive: true });
+
+  if (menuBtn) menuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openTop(!pill.classList.contains("is-open-top"));
+    if (pill.classList.contains("is-open-top")) pill.querySelector(".pill__links a")?.focus({ preventScroll: true });
+  });
+
   // Tanto el "+" como la palabra ACTTOS abren y cierran el menú
-  [toggle, word].forEach((el) => el && el.addEventListener("click", () => setCollapsed(!pill.classList.contains("is-collapsed"))));
+  [toggle, word].forEach((el) => el && el.addEventListener("click", () => {
+    const collapse = !pill.classList.contains("is-collapsed");
+    if (collapse && !isDocked()) openTop(false); else setCollapsed(collapse);
+  }));
+  // Cerrar con Escape o al pulsar fuera del menú
+  const close = () => { if (isDocked()) setCollapsed(true); else openTop(false); };
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !pill.classList.contains("is-collapsed")) setCollapsed(true);
+    if (e.key === "Escape" && !pill.classList.contains("is-collapsed")) { close(); menuBtn?.focus(); }
+  });
+  document.addEventListener("click", (e) => {
+    if (!pill.contains(e.target) && pill.classList.contains("is-open-top")) close();
   });
 }
 
