@@ -1371,3 +1371,58 @@ header .wordmark { padding-right: calc(var(--menu-btn) + clamp(10px, 1.4vw, 20px
   -webkit-text-stroke: 0;
   text-shadow: -4px 3px 0 var(--coral-dark);
 }
+
+/* ==========================================================================
+   Challenge · dos secciones desplegables (01 y 02)
+   ========================================================================== */
+.ch-accs { margin: clamp(8px, 1.5vw, 20px) 0 clamp(48px, 6vw, 88px); }
+.ch-acc { border-top: 2px solid var(--ink); }
+.ch-acc:last-child { border-bottom: 2px solid var(--ink); }
+.ch-acc__sum {
+  list-style: none; cursor: pointer;
+  max-width: calc(1030px + var(--gutter) * 2); margin-inline: auto;
+  padding: clamp(20px, 2.6vw, 34px) var(--gutter);
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: clamp(12px, 2vw, 24px);
+  color: var(--ink);
+  transition: color 0.25s;
+}
+.ch-acc__sum::-webkit-details-marker { display: none; }
+.ch-acc__sum:hover { color: var(--coral); }
+.ch-acc__num { font-size: clamp(1.4rem, 2.6vw, 2.4rem); font-weight: 800; color: var(--coral); letter-spacing: -0.02em; }
+.ch-acc__title { font-size: clamp(1.15rem, 2vw, 1.8rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; text-transform: uppercase; }
+.ch-acc__icon {
+  position: relative; width: clamp(38px, 3.4vw, 48px); height: clamp(38px, 3.4vw, 48px);
+  border-radius: 50%; background: var(--coral); flex: none;
+  transition: transform 0.4s var(--ease), background 0.25s;
+}
+.ch-acc__icon::before, .ch-acc__icon::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 42%; height: 2.5px; border-radius: 2px;
+  background: #fff; transform: translate(-50%, -50%);
+}
+.ch-acc__icon::after { transform: translate(-50%, -50%) rotate(90deg); transition: transform 0.4s var(--ease); }
+.ch-acc[open] .ch-acc__icon { background: var(--ink); }
+.ch-acc[open] .ch-acc__icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+.ch-acc__body { padding-bottom: clamp(24px, 3vw, 48px); animation: acc-in 0.45s var(--ease); }
+@keyframes acc-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+/* 01 · grupos abiertos */
+.ch-groups { list-style: none; padding: 0; margin: 4px 0 clamp(24px, 3vw, 40px); display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.ch-group {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: clamp(18px, 2vw, 26px);
+  border-radius: 16px; background: var(--coral); color: #fff; text-decoration: none;
+  transition: background 0.25s, transform 0.3s var(--ease);
+}
+.ch-group:hover { background: var(--ink); transform: translateY(-3px); }
+.ch-group__name { font-size: clamp(1.15rem, 1.7vw, 1.5rem); font-weight: 800; line-height: 1.15; }
+.ch-group__cta { font-size: 0.9rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.9; }
+.ch-msgs__intro { font-weight: 700; margin-bottom: 0.6em !important; }
+.ch-msgs { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.ch-msgs li { font-size: clamp(1.05rem, 1.35vw, 1.3rem); line-height: 1.4; padding-left: 1.6em; text-indent: -1.6em; }
+.ch-msgs strong { color: #e3322b; color: var(--coral); font-weight: 800; }
+
+@media (max-width: 640px) {
+  .ch-groups { grid-template-columns: 1fr; }
+  .ch-acc__sum { grid-template-columns: auto 1fr auto; gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .ch-acc__body { animation: none; } }

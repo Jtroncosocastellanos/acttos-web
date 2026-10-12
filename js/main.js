@@ -286,3 +286,19 @@ reels.forEach((reel) => {
   video.addEventListener("pause", () => { if (!video.seeking) reel.classList.remove("is-playing"); });
   video.addEventListener("ended", () => { reel.classList.remove("is-playing"); video.controls = false; });
 });
+
+/* ---------- Secciones desplegables del Challenge ---------- */
+// Si se llega con un enlace a algo que está dentro de una sección cerrada (p. ej. #unete), se abre
+function openTarget(hash) {
+  if (!hash || hash.length < 2) return;
+  const el = document.getElementById(decodeURIComponent(hash.slice(1)));
+  const details = el && el.closest("details");
+  if (details && !details.open) details.open = true;
+  if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" }));
+}
+openTarget(location.hash);
+window.addEventListener("hashchange", () => openTarget(location.hash));
+// Al abrir una sección, recalcula la galería (estaba oculta y no tenía medidas)
+document.querySelectorAll(".ch-acc").forEach((d) => d.addEventListener("toggle", () => {
+  if (d.open) window.dispatchEvent(new Event("resize"));
+}));
